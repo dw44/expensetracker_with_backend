@@ -1,0 +1,1 @@
+A simple expense tracking app made with React.
