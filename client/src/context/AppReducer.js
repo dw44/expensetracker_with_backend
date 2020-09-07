@@ -1,20 +1,27 @@
 export default (state, action) => {
   let newState = {}
   switch(action.type) {
-    case 'DELETE_TRANSACTION':
-      newState = {
+    case 'GET_TRANSACTIONS':
+      return {
         ...state,
-        transactions: state.transactions.filter(transaction => transaction.id !== action.payload)
+        loading: false,
+        transactions: action.payload
+      }
+    case 'DELETE_TRANSACTION':
+      return {
+        ...state,
+        transactions: state.transactions.filter(transaction => transaction._id !== action.payload)
       };
-      localStorage.setItem('transactions', JSON.stringify(newState.transactions));
-      return newState;
     case 'ADD_TRANSACTION':
-      newState = {
+      return {
         ...state,
         transactions: [...state.transactions, action.payload]
       };
-      localStorage.setItem('transactions', JSON.stringify(newState.transactions));
-      return newState;
+    case 'TRANSACTION_ERROR':
+      return {
+        ...state,
+        error: action.payload
+      }
     default:
       return state;
   };
