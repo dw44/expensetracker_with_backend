@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
+import { formattedNumber } from '../utils/format';
 
 const Balance = () => {
   const { transactions } = useContext(GlobalContext);
@@ -9,7 +10,7 @@ const Balance = () => {
   return (
     <div>
       <h4>Current Balance</h4>
-      <h1 id="balance">${total}</h1>
+      <h1 id="balance">${formattedNumber(total)}</h1>
     </div>
   );
 }
